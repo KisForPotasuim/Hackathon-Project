@@ -4,7 +4,7 @@ import requests
 import base64
 
 
-openai.api_key = "openai_api_key"
+openai.api_key = "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"
 onet_api_key = "onet_api_key"
 onet_url= "https://services.onetcenter.org/ws/mnm"
 
