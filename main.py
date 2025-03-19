@@ -5,8 +5,13 @@ import base64
 
 
 openai.api_key = "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"
-onet_api_key = "onet_api_key"
+onet_username = career_chatbot1
+onet_password = 7335gtw
 onet_url= "https://services.onetcenter.org/ws/mnm"
+
+credentials = f"{onet_username} : {onet_password}
+credentials_2 = base64.b64encode(credentials.encode()).decode()
+headers = {"Authorization": f"Basic {credentials_2}"}
 
 def get_onet_careers(keyword):
     url = f"{onet_url}/occupations?keyword={keyword}&start=1&end=5"
