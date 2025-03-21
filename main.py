@@ -32,9 +32,6 @@ def get_onet_careers(keyword):
 
 def get_onet_job_details(job_code):
     url = f"{onet_urlL}/occupation/{job_code}/summary"
-    headers = {
-        "Authorization": "Basic " + base64.b64encode(f"{onet_api_key}:".encode()).decode()
-    }
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         data = response.json()
