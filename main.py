@@ -2,7 +2,7 @@ import streamlit as st
 import openai
 import requests
 import base64
-
+# Just adding comments and fixing minor errors
 # https://services.onetcenter.org/ws/mnm/occupations?keyword=engineer&start=1&end=5
 openai.api_key = "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"
 onet_username = "career_chatbot1"
@@ -39,7 +39,6 @@ def get_onet_job_details(job_code,headers=headers):
     return "Details unavailable."
 
 # streamlit
-
 st.title("Career Recommendation Chatbot")
 st.write("Answer the questions below to get recommendations on majors and careers!")
 user_input = st.text_area("")
@@ -50,6 +49,7 @@ if st.button("Get Recommendations"):
             model="gpt-4o",
             messages=[{"role": "system", "content": "Analyze user interests and suggest relevant fields."},
                       {"role": "user", "content": f"Here is the provided information:{user_input}"}]
+
         )
         ai_response = response["choices"][0]["message"]["content"].lower()
         careers = get_onet_careers(ai_response.split()[0])
@@ -59,3 +59,4 @@ if st.button("Get Recommendations"):
             st.write(career_info)
     else:
         st.write("")
+
