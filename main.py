@@ -11,7 +11,7 @@ onet_url= "https://services.onetcenter.org/ws/mnm"
 
 credentials = f"{onet_username} : {onet_password}
 credentials_2 = base64.b64encode(credentials.encode()).decode()
-headers = {"Authorization": f"Basic {credentials_2}"}
+headers = {"Authorizaion": f"Basic {credentials_2}"}
 
 def get_onet_careers(keyword):
     url = f"{onet_url}/occupations?keyword={keyword}&start=1&end=5"
