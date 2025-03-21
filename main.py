@@ -2,18 +2,18 @@ import streamlit as st
 import openai
 import requests
 import base64
-
-
+# Just adding comments and fixing minor errors
+# https://services.onetcenter.org/ws/mnm/occupations?keyword=engineer&start=1&end=5
 openai.api_key = "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"
-onet_username = career_chatbot1
-onet_password = 7335gtw
+onet_username = "career_chatbot1"
+onet_password = "7335gtw"
 onet_url= "https://services.onetcenter.org/ws/mnm"
 
-credentials = f"{onet_username} : {onet_password}
+credentials = f"{onet_username} : {onet_password}"
 credentials_2 = base64.b64encode(credentials.encode()).decode()
-headers = {"Authorizaion": f"Basic {credentials_2}"}
+headers = {"Authorization": f"Basic {credentials_2}"}
 
-def get_onet_careers(keyword):
+def get_onet_careers(keyword,headers=headers):
     url = f"{onet_url}/occupations?keyword={keyword}&start=1&end=5"
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
@@ -27,8 +27,8 @@ def get_onet_careers(keyword):
         return careers if careers else [("No relevant careers found", "")]
     return [("Failed to fetch data from O*NET", "")]
 
-def get_onet_job_details(job_code):
-    url = f"{onet_urlL}/occupation/{job_code}/summary"
+def get_onet_job_details(job_code,headers=headers):
+    url = f"{onet_url}/occupation/{job_code}/summary"
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         data = response.json()
@@ -38,7 +38,7 @@ def get_onet_job_details(job_code):
         return f"Description: {description}\nMedian Salary: ${salary}"
     return "Details unavailable."
 
-
+# streamlit
 st.title("Career Recommendation Chatbot")
 st.write("Answer the questions below to get recommendations on majors and careers!")
 user_input = st.text_area("")
@@ -46,9 +46,10 @@ user_input = st.text_area("")
 if st.button("Get Recommendations"):
     if user_input:
         response = openai.chat.completions.create(
-            model="gpt-4",
+            model="gpt-4o",
             messages=[{"role": "system", "content": "Analyze user interests and suggest relevant fields."},
-                      {"role": "user", "content": user_input}]
+                      {"role": "user", "content": f"Here is the provided information:{user_input}"}]
+
         )
         ai_response = response["choices"][0]["message"]["content"].lower()
         careers = get_onet_careers(ai_response.split()[0])
@@ -58,3 +59,4 @@ if st.button("Get Recommendations"):
             st.write(career_info)
     else:
         st.write("")
+
