@@ -15,9 +15,6 @@ headers = {"Authorization": f"Basic {credentials_2}"}
 
 def get_onet_careers(keyword):
     url = f"{onet_url}/occupations?keyword={keyword}&start=1&end=5"
-    headers = {
-        "Authorization": "Basic " + base64.b64encode(f"{onet_api_key}:".encode()).decode()
-    }
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         data = response.json()
