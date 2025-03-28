@@ -46,7 +46,11 @@ question_2=st.selectbox("What are your salary expectations?",["Less than $40K", 
 question_3= st.selectbox(("What standard school subject do you enjoy the most?", ["Math", "Arts", "Biology", "Chemistry", "Physics", "Technology", "Business", "Social Studies","Physical Education", "Other"])
 quesion_4=st.text_area("Do you enjoy talking to people? Feel free to explain or just leave a yes or no.")
 question_5=st.text_area("Do you enjoy working in groups? Feel free to explain or just leave a yes or no.")
-question_5=st.select_box("Do you prefer:", ["Structured tasks", "Creative problem-solving", "A mix of both", "Neither"])
+question_5=st.selectbox("Do you prefer:", ["Structured tasks", "Creative problem-solving", "A mix of both", "Neither"])
+question_6=st.selectbox("What work environment do you prefer?", ["Office", "Outdoors", "Lab", "Remote", "Fieldwork"])
+question_7=st.text_area("Do you like being the leader in projects?" Feel free to explain or just leave a yes or no.")
+question_8 = st.text_area("Do you have any interests?")
+question_9 = st.text_area("Would you say you have a creative mind?")
 
 
 if st.button("Get Recommendations"):
