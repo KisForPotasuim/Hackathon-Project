@@ -41,7 +41,13 @@ def get_onet_job_details(job_code,headers=headers):
 # streamlit
 st.title("Career Recommendation Chatbot")
 st.write("Answer the questions below to get recommendations on majors and careers!")
-user_input = st.text_area("")
+question_1 = st.text_area("What are your hobbies?")
+question_2=st.selectbox("What are your salary expectations?",["Less than $40K", "$40K - $70K", "$70K - $100K", "Above $100K"])
+question_3= st.selectbox(("What standard school subject do you enjoy the most?", ["Science", "Math", "Arts", "Technology", "Business", "Social Studies","Physical Education", " "Other"])
+quesion_4=st.text_area("Do you enjoy talking to people? Feel free to explain or just leave a yes or no.")
+question_5=st.text_area("Do you enjoy working in groups? Feel free to explain or just leave a yes or no.")
+question_5=st.select_box("Do you prefer:", ["Structured tasks", "Creative problem-solving", "A mix of both", "Neither"])
+
 
 if st.button("Get Recommendations"):
     if user_input:
