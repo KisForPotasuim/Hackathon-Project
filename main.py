@@ -49,8 +49,12 @@ question_5=st.text_area("Do you enjoy working in groups? Feel free to explain or
 question_5=st.selectbox("Do you prefer:", ["Structured tasks", "Creative problem-solving", "A mix of both", "Neither"])
 question_6=st.selectbox("What work environment do you prefer?", ["Office", "Outdoors", "Lab", "Remote", "Fieldwork"])
 question_7=st.text_area("Do you like being the leader in projects?" Feel free to explain or just leave a yes or no.")
-question_8 = st.text_area("Do you have any interests?")
+question_8 = st.text_area("Do you have any interests? If so please state them below.")
 question_9 = st.text_area("Would you say you have a creative mind?")
+question_10 = st.text_area("What are your work values?")
+question_11 = st.text_area("What are your talents and strengths?")
+question_12 = st.multiselect("What industry would you like to work in?", ["Healthcare","Education", "Agriculture", "Construction", "Transportation", "Energy", "Entertainment", "Art", "Hospitality", "Software" "Hardware", "Finance", "Manufacturing", "Culinary, "Engineering", "Marketing", "Advising", "Research, "Sales", "Investing", "Law", "Business", "Aerospace", "Manual Labor"])
+
 
 
 if st.button("Get Recommendations"):
@@ -61,7 +65,7 @@ if st.button("Get Recommendations"):
         )
         ai_response = response["choices"][0]["message"]["content"].lower()
         careers = get_onet_careers(ai_response.split()[0])
-        st.subheader("Recommended Careers from O*NET")
+        st.subheader("Here's what we reccomend:")
         for career_title, career_info in careers:
             st.write(f"### {career_title}")
             st.write(career_info)
