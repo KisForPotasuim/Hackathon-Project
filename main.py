@@ -53,10 +53,10 @@ question_8 = st.text_area("Do you have any interests? If so please state them be
 question_9 = st.text_area("Would you say you have a creative mind?")
 question_10 = st.text_area("What are your work values?")
 question_11 = st.text_area("What are your talents and strengths?")
-question_12 = st.multiselect("What industry would you like to work in?", ["Healthcare","Education", "Agriculture", "Construction", "Transportation", "Energy", "Entertainment", "Art", "Hospitality", "Software" "Hardware", "Finance", "Manufacturing", "Culinary", "Engineering", "Marketing", "Advising", "Research", "Sales", "Investing", "Law", "Business", "Aerospace", "Manual Labor"])
+question_12 = st.multiselect("What industry would you like to work in?", ["Healthcare","Education", "Agriculture", "Construction", "Transportation", "Energy", "Entertainment", "Art", "Hospitality", "Software", "Hardware", "Finance", "Manufacturing", "Culinary", "Engineering", "Marketing", "Advising", "Research", "Sales", "Investing", "Law", "Business", "Aerospace", "Manual Labor"])
 question_13 = st.selectbox("How much education are you willing to go through?", ["Bachelor's degree", "Master's degree", "Community college", "No college"])
 
-user_input = f""" {question_1 if question_1 else "Not provided"} {question_2} {question_3} {question_4 if question_4 else "Not provided"} {question_5 if question_5 else "Not provided"} {question_6} {question_7} {question_8 if question_8 else "Not provided"} {question_9 if question_9 else "Not provided"} {question_10 if question_10 else "Not provided"} {question_11 if question_11 else "Not provided"} {question_12 if question_12 else "Not provided"} {", ".join(question_13) if question_13 else "Not specified"} {question_14}"""
+user_input = f""" {question_1 if question_1 else "Not provided"} {question_2} {question_3} {question_4 if question_4 else "Not provided"} {question_5 if question_5 else "Not provided"} {question_6} {question_7} {question_8 if question_8 else "Not provided"} {question_9 if question_9 else "Not provided"} {question_10 if question_10 else "Not provided"} {question_11 if question_11 else "Not provided"} {question_12 if question_12 else "Not provided"} {", ".join(question_13) if question_13 else "Not specified"}"""
 
 if st.button("Get Recommendations"):
     if user_input:
