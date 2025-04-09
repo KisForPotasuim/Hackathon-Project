@@ -57,18 +57,22 @@ question_13 = st.selectbox("How much education are you willing to go through?", 
 
 user_input = f""" {question_1 if question_1 else "Not provided"} {question_2} {question_3} {question_4 if question_4 else "Not provided"} {question_5 if question_5 else "Not provided"} {question_6} {question_7} {question_8 if question_8 else "Not provided"} {question_9 if question_9 else "Not provided"} {question_10 if question_10 else "Not provided"} {question_11 if question_11 else "Not provided"} {question_12 if question_12 else "Not provided"} {", ".join(question_13) if question_13 else "Not specified"}"""
 
+
 if st.button("Get Recommendations"):
     if user_input:
         response = openai.chat.completions.create(
             model="gpt-4o",
+
             messages=[{"role": "system", "content": "Analyze user responses and suggest relevant careers."}, {"role": "user", "content": user_input}]
         )
         ai_response = response["choices"][0]["message"]["content"].lower()
         careers = get_onet_careers(ai_response.split()[0])
         st.subheader("Here's what we reccomend:")
+
         for career_title, career_info in careers:
             st.write(f"### {career_title}")
             st.write(career_info)
     else:
+
         st.write("")
 
