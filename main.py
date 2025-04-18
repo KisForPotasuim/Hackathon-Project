@@ -63,7 +63,7 @@ if st.button("Get Recommendations"):
         response = openai.chat.completions.create(
             model="gpt-4o",
 
-            messages=[{"role": "system", "content": "Analyze user responses and suggest relevant careers."}, {"role": "user", "content": user_input}]
+            messages=[{"role": "system", "content": "Analyze user responses and suggest relevant careers or majors."}, {"role": "user", "content": user_input}]
         )
         ai_response = response.choices[0].message.content.lower()
         careers = get_onet_careers(ai_response.split()[0])
