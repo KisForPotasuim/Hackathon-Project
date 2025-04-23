@@ -14,7 +14,7 @@ credentials = HTTPBasicAuth(onet_username, onet_password)
 
 
 class Url():
-    def __init__(self,type,category,subcat,sortcat,keyword,prep,initial=21,end=40,code=None):
+    def __init__(self,type,category,subcat,sortcat,keyword,prep,initial=1,end=2,code=None):
         self.baseUrl="https://services.onetcenter.org/ws/"
         self.service=type
         self.category=category
@@ -84,20 +84,37 @@ class Url():
                 job_info = self.get_onet_job_details(temp)
                 self.careers.append((job_title, job_info))
             # return data
-            return self.careers if self.careers else [("No relevant careers found", "")]
+
+            return self.careers if self.careers else [("test", "")]
         return [("Failed to fetch data from O*NET", "")]
 
     def get_onet_job_details(self,temp,headers=credentials):
+        # https://services.onetcenter.org/v1.9/ws/mnm/careers/[O*NET-SOC Code]/job_outlook("salary")
+
         accept={"Accept" : "application/json"}
-        response = requests.get(temp.url, auth=headers, headers=accept)
-        
-        if response.status_code == 200:
-            data = response.json()
-            description = data.get("description", "No description available.")
-            wage_info = data.get("wages", {}).get("national_median", {})
-            salary = wage_info.get("annual", "Salary data unavailable")
-            return f"Description: {description}\nMedian Salary: ${salary}\n"
-        return "Details unavailable." #422 error code
+        accessList=[temp.url,temp.url+self.detailFindKey["salary"],temp.url+self.detailFindKey["school"]] #these are most important:general description,salary+brightoutlook, and prep needed
+        file=None
+        tag={"0":"Description:","1":"Salary:","2":"Prep:","3":"Education:"}
+        for i in accessList:
+            response = requests.get(i, auth=headers, headers=accept)
+            
+            if response.status_code == 200:
+                data = response.json()
+                tempList=[
+                data.get("what_they_do", None),
+                data.get("salary", {}).get("annual_median", None),
+                data.get("job_zone",None),
+                data.get("education_usually_needed",{}).get("category",None)]
+                if(not file):
+                    file=open(f"{data.get("title","data")}.txt","w+") #this works, but too much, so I change sort val
+                
+                for j in range(len(tempList)):
+                    if not tempList[j]==None:
+                        file.write(tag[str(j)]+"\n"+str(tempList[j])+"\n")
+        file.close()
+            # return f"Description: {description}\nMedian Salary: ${salary}\n"
+        #     return "Details unavailable." #422 error code
+
 
 
 
@@ -112,25 +129,9 @@ class Url():
             "occ":{"":"/summary"}
             }
     sortcatSplit={"name":"?sort=name","future":"?sort=bright_outlook","search":"","":""}
-    sortsplit={"def":"&start=2&end=4","":""} #chars index is 7,13
+    sortsplit={"def":"&start=1&end=2","":""} #chars index is 7,13
     jsonKey={"default":"career","future":"career","prep":"career","search":"occupation","occ":"occupation"}
-
-# def get_onet_careers(url,headers=credentials):
-#     accept={"Accept" : "application/json"}
-#     response = requests.get(url.url, auth=headers, headers=accept)
-
-#     if response.status_code == 200:
-#         data = response.json()
-#         careers = []
-#         for job in data.get("occupation", []):
-#             job_code = job["code"]
-#             job_title = job["title"]
-#             url=Url("web","occ","","name",a,5,code=job_code)
-#             job_info = get_onet_job_details(url)
-#             careers.append((job_title, job_info))
-#         # return data
-#         return careers if careers else [("No relevant careers found", "")]
-#     return [("Failed to fetch data from O*NET", "")]
+    detailFindKey={"salary":"/job_outlook","prep":"/knowledge","skills":"/skills","school":"/education"}
 
 
 a="artichect"
