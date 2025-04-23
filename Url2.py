@@ -84,6 +84,7 @@ class Url():
                 job_info = self.get_onet_job_details(temp)
                 self.careers.append((job_title, job_info))
             # return data
+
             return self.careers if self.careers else [("test", "")]
         return [("Failed to fetch data from O*NET", "")]
 
@@ -116,6 +117,7 @@ class Url():
 
 
 
+
     categorySplit={"default":"careers/","future":"bright_outlook/","prep":"job_preparation/","search":"search/","occ":"occupation/"}
     serviceSplit={"default":"mnm/","web":"online/"}
     fineTuning={
@@ -140,8 +142,8 @@ Url("default","prep","ready","future",a,5),
 Url("default","default","","",a,5,code="17-2071.00"),
 ] #0,1,2,3 are good..
 
-# for i in test:
-#     print(i.url)
+for i in test:
+    print(i.url)
 
 print(test[0].get_onet_careers())
-# print(Url("default","default","","",a,5,code="17-2071.00").url)
+print(Url("default","default","","",a,5,code="17-2071.00").url)
