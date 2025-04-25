@@ -4,7 +4,7 @@ import requests
 import base64
 # Just adding comments and fixing minor errors
 # https://services.onetcenter.org/ws/mnm/occupations?keyword=engineer&start=1&end=5
-openai.api_key = "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"
+openai.api_key = "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"
 onet_username = "career_chatbot1"
 onet_password = "7335gtw"
 onet_url= "https://services.onetcenter.org/ws/mnm"
