@@ -1,0 +1,10 @@
+{
+    "Description:": "Mix and serve drinks to patrons, directly or through waitstaff.",
+    "Code:": "35-3011.00",
+    "Salary:": 31510,
+    "Prep:": 2,
+    "Education:": [
+        "high school diploma/GED",
+        "no high school diploma/GED"
+    ]
+}

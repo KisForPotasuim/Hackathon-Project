@@ -1,0 +1,8 @@
+Description:
+Analyze statistical data, such as mortality, accident, sickness, disability, and retirement rates and construct probability tables to forecast risk and liability for payment of future benefits. May ascertain insurance rates required and cash reserves necessary to ensure payment of future benefits.
+Salary:
+120000
+Prep:
+4
+Education:
+["bachelor's degree", 'certificate after college']
