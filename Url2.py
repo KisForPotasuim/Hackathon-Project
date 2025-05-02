@@ -121,30 +121,34 @@ class Url():
             
             if(not savedTitle):
                 savedTitle="data"
-            with open(f"data/{savedTitle}.json","w+") as file:
+            with open(f"data/{code}{savedTitle}.json","w+") as file:
                 json.dump(fileData,file,indent=4)
             file.close()
         return "set self.write=True"
 
     def decodeData(self,index=None,title=None,code=None):
         if self.read:
+            flag=False
             if not(title==None):
                 pass
             if not(index==None):
                 title=f"{sorted(os.listdir("data/"))[index]}"
-                title=title[0:len(title)-len(".json")]
+                flag=True
             if not(code==None):
-                # I'll add programming for code later because it is ineffecient unless there is a sort for order based on the career code
-                # name will be based first 2 chars of code ie. 15
-                # then use the listdir to get a sorted list and open relevent files and check
-                # potentially needed custom tagging system for more complex uses
-                pass
+                title=code
+            
+            if(not flag):
+                for i in os.listdir("data/"):
+                        if(title in i):
+                            title=i
+                            break
             career={}
+            title=title[0:len(title)-len(".json")]
             with open(f"data/{title}.json","r") as file:
                     data=json.load(file)
                     for i in self.tag.values():
                         career[i]=data.get(i,None)
-            self.compiledData[title]=career #saves data for session
+            self.compiledData[title[10:len(title)+1]]=career #saves data for session
             return career
         return {"Error":"Change Url.read to True"}
         
@@ -172,7 +176,7 @@ class Url():
 # For testing, just import the Url class
 a="artichect"
 test=[
-Url("default","future","grow","name",a,5,end=40),
+Url("default","future","grow","name",a,5,end=40,write=False),
 Url("web","search","keyword","search",a,5),
 Url("default","prep","ready","future",a,5),
 Url("default","default","","",a,5,code="17-2071.00")
@@ -188,7 +192,9 @@ test[0].get_onet_careers()
 dataLenght=len(os.listdir("data/"))
 for i in range(dataLenght):
     test[0].decodeData(index=i)
+# test[0].decodeData(code="19-3091.00")
 print(test[0].sessionData())
+
 b=perf_counter()
 print(b-a)
 
