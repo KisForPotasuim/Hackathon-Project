@@ -9,7 +9,7 @@ import os
 
 # Just adding comments and fixing minor errors
 # https://services.onetcenter.org/ws/mnm/occupations?keyword=engineer&start=1&end=5
-openai.api_key = "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"
+openai.api_key = "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"
 onet_username = "career_chatbot1"
 onet_password = "7335gtw"
 credentials = HTTPBasicAuth(onet_username, onet_password)
