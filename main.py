@@ -56,9 +56,10 @@ if st.button("Get Recommendations"):
         # )
         # ai_response = response["choices"][0]["message"]["content"].lower()
         # careers = get_onet_careers(ai_response.split()[0])
-        careers=url1.get_onet_careers()
+        career=url1.get_onet_careers()
         # for i in range(len(os.listdir("data/"))):
         url1.decodeData(index=0)
+        careers=url1.sessionData()
         # data=url1.sessionData()
         
         st.subheader("Here's what we reccomend:")
