@@ -247,7 +247,7 @@ class Url():
 # For testing, just import the Url class
 a="artichect"
 test=[
-Url("default","future","grow","name",a,5,end=2000,write=False),
+Url("default","future","grow","name",a,5,end=40,write=True),
 Url("web","search","keyword","search",a,5),
 Url("default","prep","ready","future",a,5),
 Url("default","default","","",a,5,code="17-2071.00")
@@ -255,6 +255,7 @@ Url("default","default","","",a,5,code="17-2071.00")
 
 # for i in test:
 #     print(i.url)
+
 a=perf_counter()
 # test[0].get_onet_careers()
 # for i in range(1,6):
@@ -271,8 +272,8 @@ for i in range(dataLenght):
 for i in test[0].sortData():
     print(f"{i}:{test[0].decodeData(title=i)['Salary:']}")
 
-b=perf_counter()
-print(b-a)
+# b=perf_counter()
+# print(b-a)
 
 # print(os.listdir("data/"))
 # print(Url("default","default","","",a,5,code="17-2071.00").url
