@@ -1,0 +1,10 @@
+{
+    "Description:": "Teach courses in the physical sciences, except chemistry and physics. Includes both teachers primarily engaged in teaching, and those who do a combination of teaching and research.",
+    "Code:": "25-1051.00",
+    "Salary:": 101390,
+    "Prep:": 5,
+    "Education:": [
+        "master's degree",
+        "doctoral degree"
+    ]
+}

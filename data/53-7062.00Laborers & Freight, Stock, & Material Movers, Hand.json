@@ -1,0 +1,10 @@
+{
+    "Description:": "Manually move freight, stock, luggage, or other materials, or perform other general labor. Includes all manual laborers not elsewhere classified.",
+    "Code:": "53-7062.00",
+    "Salary:": 38940,
+    "Prep:": 2,
+    "Education:": [
+        "high school diploma/GED",
+        "no high school diploma/GED"
+    ]
+}

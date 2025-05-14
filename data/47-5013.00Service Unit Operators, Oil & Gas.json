@@ -1,0 +1,10 @@
+{
+    "Description:": "Operate equipment to increase oil flow from producing wells or to remove stuck pipe, casing, tools, or other obstructions from drilling wells. Includes fishing-tool technicians.",
+    "Code:": "47-5013.00",
+    "Salary:": 57980,
+    "Prep:": 2,
+    "Education:": [
+        "high school diploma/GED",
+        "no high school diploma/GED"
+    ]
+}

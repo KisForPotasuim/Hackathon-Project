@@ -1,0 +1,9 @@
+{
+    "Description:": "Purchase farm products either for further processing or resale. Includes tree farm contractors, grain brokers and market operators, grain buyers, and tobacco buyers. May negotiate contracts.",
+    "Code:": "13-1021.00",
+    "Salary:": 75650,
+    "Prep:": 4,
+    "Education:": [
+        "bachelor's degree"
+    ]
+}

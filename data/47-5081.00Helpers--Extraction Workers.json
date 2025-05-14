@@ -1,0 +1,9 @@
+{
+    "Description:": "Help extraction craft workers, such as earth drillers, blasters and explosives workers, derrick operators, and mining machine operators, by performing duties requiring less skill. Duties include supplying equipment or cleaning work area.",
+    "Code:": "47-5081.00",
+    "Salary:": 48400,
+    "Prep:": 2,
+    "Education:": [
+        "high school diploma/GED"
+    ]
+}

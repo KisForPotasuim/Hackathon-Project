@@ -1,0 +1,10 @@
+{
+    "Description:": "Provide medical care related to pregnancy or childbirth. Diagnose, treat, and help prevent diseases of women, particularly those affecting the reproductive system. May also provide general care to women. May perform both medical and gynecological surgery functions.",
+    "Code:": "29-1218.00",
+    "Salary:": -1,
+    "Prep:": 5,
+    "Education:": [
+        "post-doctoral training",
+        "doctoral degree"
+    ]
+}

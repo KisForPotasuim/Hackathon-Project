@@ -1,0 +1,10 @@
+{
+    "Description:": "Prepare and cook food in a fast food restaurant with a limited menu. Duties of these cooks are limited to preparation of a few basic items and normally involve operating large-volume single-purpose cooking equipment.",
+    "Code:": "35-2011.00",
+    "Salary:": 30160,
+    "Prep:": 1,
+    "Education:": [
+        "high school diploma/GED",
+        "no high school diploma/GED"
+    ]
+}

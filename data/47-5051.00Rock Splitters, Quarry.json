@@ -1,0 +1,10 @@
+{
+    "Description:": "Separate blocks of rough dimension stone from quarry mass using jackhammers, wedges, or chop saws.",
+    "Code:": "47-5051.00",
+    "Salary:": 47460,
+    "Prep:": 1,
+    "Education:": [
+        "no high school diploma/GED",
+        "high school diploma/GED"
+    ]
+}

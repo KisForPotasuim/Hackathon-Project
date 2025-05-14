@@ -1,0 +1,10 @@
+{
+    "Description:": "Administer anesthetics and analgesics for pain management prior to, during, or after surgery.",
+    "Code:": "29-1211.00",
+    "Salary:": -1,
+    "Prep:": 5,
+    "Education:": [
+        "post-doctoral training",
+        "doctoral degree"
+    ]
+}
