@@ -94,8 +94,7 @@ class Url():
             accept={"Accept" : "application/json"}
             accessList=[temp.url,temp.url+self.detailFindKey["salary"],temp.url+self.detailFindKey["school"]] #these are most important:general description,salary+brightoutlook, and prep needed
             file=None
-            
-            fileData={}
+            fileData={"Description:":None,"Code:":None,"Salary:":-1,"Prep:":-1,"Education:":None}
             for i in accessList:
                 response = requests.get(i, auth=headers, headers=accept)
                 if response.status_code == 200:
@@ -116,7 +115,10 @@ class Url():
                     
                     for j in range(len(tempList)):
                         if tempList[j]:
-                            fileData[self.tag[str(j)]]=tempList[j]
+                            try:
+                                fileData[self.tag[str(j)]]=max(tempList[j],fileData[self.tag])
+                            except:
+                                fileData[self.tag[str(j)]]=tempList[j]
                             # file.write(tag[str(j)]+"\n"+str(tempList[j])+"\n")
             
             if(not savedTitle):
@@ -264,8 +266,9 @@ for i in range(dataLenght):
     test[0].decodeData(index=i)
 # test[0].decodeData(code="19-3091.00")
 # print(test[0].sessionData())
-print(test[0].saveSortData())
-print("Done")
+
+for i in test[0].sortData():
+    print(f"{i}:{test[0].decodeData(title=i)['Salary:']}")
 
 # b=perf_counter()
 # print(b-a)

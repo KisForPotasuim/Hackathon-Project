@@ -1,0 +1,10 @@
+{
+    "Description:": "Produce ultrasonic recordings of internal organs for use by physicians. Includes vascular technologists.",
+    "Code:": "29-2032.00",
+    "Salary:": 89340,
+    "Prep:": 3,
+    "Education:": [
+        "associate's degree",
+        "certificate after high school"
+    ]
+}

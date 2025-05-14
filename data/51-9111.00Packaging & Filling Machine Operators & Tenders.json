@@ -1,0 +1,10 @@
+{
+    "Description:": "Operate or tend machines to prepare industrial or consumer products for storage or shipment. Includes cannery workers who pack food products.",
+    "Code:": "51-9111.00",
+    "Salary:": 40900,
+    "Prep:": 2,
+    "Education:": [
+        "high school diploma/GED",
+        "no high school diploma/GED"
+    ]
+}
