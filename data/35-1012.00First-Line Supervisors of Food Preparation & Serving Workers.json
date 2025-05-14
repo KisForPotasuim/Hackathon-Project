@@ -1,0 +1,10 @@
+{
+    "Description:": "Directly supervise and coordinate activities of workers engaged in preparing and serving food.",
+    "Code:": "35-1012.00",
+    "Salary:": 42010,
+    "Prep:": 2,
+    "Education:": [
+        "high school diploma/GED",
+        "no high school diploma/GED"
+    ]
+}

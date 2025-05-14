@@ -1,0 +1,10 @@
+{
+    "Description:": "Collect and dump refuse or recyclable materials from containers into truck. May drive truck.",
+    "Code:": "53-7081.00",
+    "Salary:": 48350,
+    "Prep:": 2,
+    "Education:": [
+        "high school diploma/GED",
+        "associate's degree"
+    ]
+}

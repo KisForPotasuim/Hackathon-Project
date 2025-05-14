@@ -94,8 +94,7 @@ class Url():
             accept={"Accept" : "application/json"}
             accessList=[temp.url,temp.url+self.detailFindKey["salary"],temp.url+self.detailFindKey["school"]] #these are most important:general description,salary+brightoutlook, and prep needed
             file=None
-            
-            fileData={}
+            fileData={"Description:":None,"Code:":None,"Salary:":-1,"Prep:":-1,"Education:":None}
             for i in accessList:
                 response = requests.get(i, auth=headers, headers=accept)
                 if response.status_code == 200:
@@ -116,7 +115,10 @@ class Url():
                     
                     for j in range(len(tempList)):
                         if tempList[j]:
-                            fileData[self.tag[str(j)]]=tempList[j]
+                            try:
+                                fileData[self.tag[str(j)]]=max(tempList[j],fileData[self.tag])
+                            except:
+                                fileData[self.tag[str(j)]]=tempList[j]
                             # file.write(tag[str(j)]+"\n"+str(tempList[j])+"\n")
             
             if(not savedTitle):
@@ -132,7 +134,7 @@ class Url():
             if not(title==None):
                 pass
             if not(index==None):
-                title=f"{sorted(os.listdir("data/"))[index]}"
+                title=f"{sorted(os.listdir('data/'))[index]}"
                 flag=True
             if not(code==None):
                 title=code
@@ -148,12 +150,81 @@ class Url():
                     data=json.load(file)
                     for i in self.tag.values():
                         career[i]=data.get(i,None)
-            self.compiledData[title[10:len(title)+1]]=career #saves data for session
+            # try:
+            self.compiledData[title[10:len(title)+1]]=career
+            # except:
+            #     pass
             return career
         return {"Error":"Change Url.read to True"}
         
     def sessionData(self):
         return self.compiledData
+
+    def sortDataHelper(self,ls1,ls2,dict1):
+        # double pointer method, i=salaries, j=name
+        finalLs=[]
+        # file=open("debug.txt","w")
+        # file.write("i,j,len(finalLs),len(ls2),ls2[j],dict1[ls2[j]],ls1[i]\n")
+        # file.write(f"{ls1}, {ls2}, {dict1}")
+        i=0
+        j=0
+        while len(finalLs)<len(ls1):
+            if(ls1[i]==-1):
+                break
+            # file.write(f"\n")
+            # print(len(ls2),len(finalLs))
+            if(dict1[ls2[j]]==ls1[i]):#if its top of the list
+                finalLs.append(ls2.pop(j))
+                i+=1
+                # ls1.pop(i)
+                j=0
+            else:
+                j+=1
+            # print((ls2[j]),dict1[ls2[j]]==ls1[i],ls1[i],i,dict1[ls2[j]],ls1.index(81680))
+            # file.write(f"{i},{j},{len(finalLs)},{len(ls2)},{ls2[j]},{dict1[ls2[j]]},{ls1[i]}") #error on line 16674
+                
+        # except:
+        # file.close()
+        return finalLs
+    
+    def sortData(self,option="Sal"):
+        if self.read:
+            # option "Edu"/"Sal"
+            # if(self.salarySortData==None or self.educationSortData==None):
+            SortDict={}
+            data=self.sessionData()
+            if(option=="Sal"):
+                key="Salary:"
+            elif(option=="Edu"):
+                key="Prep:"
+            for i in data.keys():
+                SortDict[i]=data[i][key]
+        
+            sal1=list((SortDict.values()))
+            sal2=list((SortDict.keys()))
+            sal1.sort(reverse=True)
+            # print(sal1)
+            # sal2.sort()
+            # print(sal2)
+            return self.sortDataHelper(sal1,sal2,SortDict)
+        return ['Access; Change Read to True']
+        
+    def saveSortData(self):
+        if(self.write):
+            # Making sure data can be accessed
+            perm=self.read
+            self.read=True
+            targetDataSal=self.sortData(option="Sal")
+            targetDataPrep=self.sortData(option="Edu")
+            self.read=perm
+            
+            # writing data
+            targetData={"Salary":targetDataSal,"Edu":targetDataPrep,"BigData":self.sessionData()}
+            with open('sort/sortKey.json',"w") as file:
+                json.dump(targetData,file,indent=4)
+
+            return True
+        return False
     
 
     tag={"0":"Description:","1":"Salary:","2":"Prep:","3":"Education:","4":"Code:"}
@@ -176,7 +247,7 @@ class Url():
 # For testing, just import the Url class
 a="artichect"
 test=[
-Url("default","future","grow","name",a,5,end=40,write=False),
+Url("default","future","grow","name",a,5,end=2000,write=False),
 Url("web","search","keyword","search",a,5),
 Url("default","prep","ready","future",a,5),
 Url("default","default","","",a,5,code="17-2071.00")
@@ -185,15 +256,20 @@ Url("default","default","","",a,5,code="17-2071.00")
 # for i in test:
 #     print(i.url)
 a=perf_counter()
-test[0].get_onet_careers()
+# test[0].get_onet_careers()
+# for i in range(1,6):
+    # Url("default","prep","ready","future",a,i,end=1000,write=False).get_onet_careers()
 # print(perf_counter()-a)
 
 
 dataLenght=len(os.listdir("data/"))
+print(dataLenght)
 for i in range(dataLenght):
     test[0].decodeData(index=i)
 # test[0].decodeData(code="19-3091.00")
-print(test[0].sessionData())
+# print(test[0].sessionData())
+for i in test[0].sortData():
+    print(f"{i}:{test[0].decodeData(title=i)['Salary:']}")
 
 b=perf_counter()
 print(b-a)

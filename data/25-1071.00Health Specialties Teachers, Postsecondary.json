@@ -1,0 +1,10 @@
+{
+    "Description:": "Teach courses in health specialties, in fields such as dentistry, laboratory technology, medicine, pharmacy, public health, therapy, and veterinary medicine.",
+    "Code:": "25-1071.00",
+    "Salary:": 105620,
+    "Prep:": 5,
+    "Education:": [
+        "master's degree",
+        "doctoral degree"
+    ]
+}

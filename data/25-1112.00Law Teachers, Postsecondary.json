@@ -1,0 +1,10 @@
+{
+    "Description:": "Teach courses in law. Includes both teachers primarily engaged in teaching and those who do a combination of teaching and research.",
+    "Code:": "25-1112.00",
+    "Salary:": 126650,
+    "Prep:": 5,
+    "Education:": [
+        "professional degree",
+        "doctoral degree"
+    ]
+}

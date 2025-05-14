@@ -1,0 +1,10 @@
+{
+    "Description:": "Diagnose diseases and conduct lab tests using organs, body tissues, and fluids. Includes medical examiners.",
+    "Code:": "29-1222.00",
+    "Salary:": -1,
+    "Prep:": 5,
+    "Education:": [
+        "post-doctoral training",
+        "doctoral degree"
+    ]
+}
