@@ -1,0 +1,10 @@
+{
+    "Description:": "Compile and keep personnel records. Record data for each employee, such as address, weekly earnings, absences, amount of sales or production, supervisory reports, and date of and reason for termination. May prepare reports for employment records, file employment records, or search employee files and furnish information to authorized persons.",
+    "Code:": "43-4161.00",
+    "Salary:": 49440,
+    "Prep:": 3,
+    "Education:": [
+        "bachelor's degree",
+        "associate's degree"
+    ]
+}

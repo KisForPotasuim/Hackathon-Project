@@ -1,0 +1,10 @@
+{
+    "Description:": "Teach one or more subjects to students at the secondary school level.",
+    "Code:": "25-2031.00",
+    "Salary:": 64580,
+    "Prep:": 4,
+    "Education:": [
+        "bachelor's degree",
+        "master's degree"
+    ]
+}

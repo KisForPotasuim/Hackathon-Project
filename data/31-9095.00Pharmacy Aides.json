@@ -1,0 +1,10 @@
+{
+    "Description:": "Record drugs delivered to the pharmacy, store incoming merchandise, and inform the supervisor of stock needs. May operate cash register and accept prescriptions for filling.",
+    "Code:": "31-9095.00",
+    "Salary:": 37000,
+    "Prep:": 2,
+    "Education:": [
+        "high school diploma/GED",
+        "certificate after high school"
+    ]
+}

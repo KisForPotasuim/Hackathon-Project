@@ -1,0 +1,10 @@
+{
+    "Description:": "Compile and record employee time and payroll data. May compute employees' time worked, production, and commission. May compute and post wages and deductions, or prepare paychecks.",
+    "Code:": "43-3051.00",
+    "Salary:": 55290,
+    "Prep:": 3,
+    "Education:": [
+        "bachelor's degree",
+        "some college"
+    ]
+}

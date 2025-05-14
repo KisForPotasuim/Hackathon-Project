@@ -1,0 +1,10 @@
+{
+    "Description:": "Receive orders, generally in person, for repairs, rentals, and services. May describe available options, compute cost, and accept payment.",
+    "Code:": "41-2021.00",
+    "Salary:": 38540,
+    "Prep:": 2,
+    "Education:": [
+        "high school diploma/GED",
+        "bachelor's degree"
+    ]
+}
