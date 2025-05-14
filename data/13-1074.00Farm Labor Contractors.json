@@ -1,0 +1,10 @@
+{
+    "Description:": "Recruit and hire seasonal or temporary agricultural laborers. May transport, house, and provide meals for workers.",
+    "Code:": "13-1074.00",
+    "Salary:": 48690,
+    "Prep:": 2,
+    "Education:": [
+        "no high school diploma/GED",
+        "high school diploma/GED"
+    ]
+}

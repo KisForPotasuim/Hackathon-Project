@@ -1,6 +1,7 @@
 {
     "Description:": "Service aircraft with fuel. May de-ice aircraft, refill water and cooling agents, empty sewage tanks, service air and oxygen systems, or clean and polish exterior.",
     "Code:": "53-6032.00",
-    "Salary:": 39110,
-    "Prep:": 2
+    "Salary:": 41540,
+    "Prep:": 2,
+    "Education:": null
 }
