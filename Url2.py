@@ -6,11 +6,11 @@ from time import perf_counter
 import os
 
 
-# https://services.onetcenter.org/ws/mnm/occupations?keyword=engineer&start=1&end=5
-onet_username = "career_chatbot1"
-onet_password = "7335gtw"
+# # https://services.onetcenter.org/ws/mnm/occupations?keyword=engineer&start=1&end=5
+# onet_username = "career_chatbot1"
+# onet_password = "7335gtw"
 
-credentials = HTTPBasicAuth(onet_username, onet_password)
+# credentials = HTTPBasicAuth(onet_username, onet_password)
 # credentials_2 = base64.b64encode(credentials.encode()).decode()
 # headers = {"Authorization": f"{credentials_2}"}
 
@@ -67,7 +67,7 @@ class Url():
         self.url=url
         return url #for debugging i guess
 
-    def get_onet_careers(self,headers=credentials):
+    def get_onet_careers(self,headers=""):
         self.careers=[]
         accept={"Accept" : "application/json"}
         response = requests.get(self.url, auth=headers, headers=accept)
@@ -87,7 +87,7 @@ class Url():
             return self.careers if self.careers else [("test", "")]
         return [("Failed to fetch data from O*NET", "")]
 
-    def get_onet_job_details(self,temp,headers=credentials,code=None):
+    def get_onet_job_details(self,temp,headers="",code=None):
         if(self.write):
         # https://services.onetcenter.org/v1.9/ws/mnm/careers/[O*NET-SOC Code]/job_outlook("salary")
 
@@ -247,7 +247,7 @@ class Url():
 # For testing, just import the Url class
 a="artichect"
 test=[
-Url("default","future","grow","name",a,5,end=40,write=True),
+Url("default","future","grow","name",a,5,end=2000,write=False),
 Url("web","search","keyword","search",a,5),
 Url("default","prep","ready","future",a,5),
 Url("default","default","","",a,5,code="17-2071.00")
@@ -255,7 +255,6 @@ Url("default","default","","",a,5,code="17-2071.00")
 
 # for i in test:
 #     print(i.url)
-
 a=perf_counter()
 # test[0].get_onet_careers()
 # for i in range(1,6):
@@ -272,8 +271,8 @@ for i in range(dataLenght):
 for i in test[0].sortData():
     print(f"{i}:{test[0].decodeData(title=i)['Salary:']}")
 
-# b=perf_counter()
-# print(b-a)
+b=perf_counter()
+print(b-a)
 
 # print(os.listdir("data/"))
 # print(Url("default","default","","",a,5,code="17-2071.00").url
