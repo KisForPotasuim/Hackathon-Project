@@ -1,0 +1,10 @@
+{
+    "Description:": "Take orders and serve food and beverages to patrons at tables in dining establishment.",
+    "Code:": "35-3031.00",
+    "Salary:": 33760,
+    "Prep:": 2,
+    "Education:": [
+        "high school diploma/GED",
+        "no high school diploma/GED"
+    ]
+}

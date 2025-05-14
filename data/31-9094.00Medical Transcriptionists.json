@@ -1,0 +1,10 @@
+{
+    "Description:": "Transcribe medical reports recorded by physicians and other healthcare practitioners using various electronic devices, covering office visits, emergency room visits, diagnostic imaging studies, operations, chart reviews, and final summaries. Transcribe dictated reports and translate abbreviations into fully understandable form. Edit as necessary and return reports in either printed or electronic form for review and signature, or correction.",
+    "Code:": "31-9094.00",
+    "Salary:": 37550,
+    "Prep:": 3,
+    "Education:": [
+        "certificate after high school",
+        "some college"
+    ]
+}

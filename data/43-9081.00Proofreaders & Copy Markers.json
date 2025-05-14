@@ -1,0 +1,10 @@
+{
+    "Description:": "Read transcript or proof type setup to detect and mark for correction any grammatical, typographical, or compositional errors. Excludes workers whose primary duty is editing copy. Includes proofreaders of braille.",
+    "Code:": "43-9081.00",
+    "Salary:": 49210,
+    "Prep:": 4,
+    "Education:": [
+        "bachelor's degree",
+        "associate's degree"
+    ]
+}
