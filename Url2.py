@@ -94,7 +94,7 @@ class Url():
             accept={"Accept" : "application/json"}
             accessList=[temp.url,temp.url+self.detailFindKey["salary"],temp.url+self.detailFindKey["school"]] #these are most important:general description,salary+brightoutlook, and prep needed
             file=None
-            fileData={"Description:":None,"Code:":None,"Salary:":-1,"Prep:":-1,"Education:":None}
+            fileData={"Description:":None,"Code:":None,"Salary:":0,"Prep:":0,"Education:":None}
             for i in accessList:
                 response = requests.get(i, auth=headers, headers=accept)
                 if response.status_code == 200:
@@ -189,10 +189,10 @@ class Url():
     
     def sortData(self,option="Sal"):
         if self.read:
-            # option "Edu"/"Sal"
-            # if(self.salarySortData==None or self.educationSortData==None):
             SortDict={}
             data=self.sessionData()
+            if(option=="Name"):
+                return sorted(list(data.keys()))
             if(option=="Sal"):
                 key="Salary:"
             elif(option=="Edu"):
@@ -203,9 +203,7 @@ class Url():
             sal1=list((SortDict.values()))
             sal2=list((SortDict.keys()))
             sal1.sort(reverse=True)
-            # print(sal1)
-            # sal2.sort()
-            # print(sal2)
+            
             return self.sortDataHelper(sal1,sal2,SortDict)
         return ['Access; Change Read to True']
         
@@ -255,24 +253,24 @@ Url("default","default","","",a,5,code="17-2071.00")
 
 # for i in test:
 #     print(i.url)
-a=perf_counter()
-# test[0].get_onet_careers()
-# for i in range(1,6):
-    # Url("default","prep","ready","future",a,i,end=1000,write=False).get_onet_careers()
-# print(perf_counter()-a)
+# a=perf_counter()
+# # test[0].get_onet_careers()
+# # for i in range(1,6):
+#     # Url("default","prep","ready","future",a,i,end=1000,write=False).get_onet_careers()
+# # print(perf_counter()-a)
 
 
-dataLenght=len(os.listdir("data/"))
-print(dataLenght)
-for i in range(dataLenght):
-    test[0].decodeData(index=i)
-# test[0].decodeData(code="19-3091.00")
-# print(test[0].sessionData())
-for i in test[0].sortData():
-    print(f"{i}:{test[0].decodeData(title=i)['Salary:']}")
+# dataLenght=len(os.listdir("data/"))
+# print(dataLenght)
+# for i in range(dataLenght):
+#     test[0].decodeData(index=i)
+# # test[0].decodeData(code="19-3091.00")
+# # print(test[0].sessionData())
+# for i in test[0].sortData():
+#     print(f"{i}:{test[0].decodeData(title=i)['Salary:']}")
 
-b=perf_counter()
-print(b-a)
+# b=perf_counter()
+# print(b-a)
 
-# print(os.listdir("data/"))
-# print(Url("default","default","","",a,5,code="17-2071.00").url
+# # print(os.listdir("data/"))
+# # print(Url("default","default","","",a,5,code="17-2071.00").url
