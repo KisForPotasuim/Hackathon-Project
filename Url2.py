@@ -187,10 +187,13 @@ class Url():
         # file.close()
         return finalLs
     
-    def sortData(self,option="Sal"):
+    def sortData(self,option="Sal",data=None):
         if self.read:
             SortDict={}
-            data=self.sessionData()
+            if(data):
+                pass
+            else:
+                data=self.sessionData()
             if(option=="Name"):
                 return sorted(list(data.keys()))
             if(option=="Sal"):
@@ -213,11 +216,12 @@ class Url():
             perm=self.read
             self.read=True
             targetDataSal=self.sortData(option="Sal")
+            targetDataName=self.sortData(option="Name")
             targetDataPrep=self.sortData(option="Edu")
             self.read=perm
             
             # writing data
-            targetData={"Salary":targetDataSal,"Edu":targetDataPrep,"BigData":self.sessionData()}
+            targetData={"Name:":targetDataName,"Salary":targetDataSal,"Edu":targetDataPrep,"BigData":self.sessionData()}
             with open('sort/sortKey.json',"w") as file:
                 json.dump(targetData,file,indent=4)
 
@@ -245,7 +249,7 @@ class Url():
 # For testing, just import the Url class
 a="artichect"
 test=[
-Url("default","future","grow","name",a,5,end=2000,write=False),
+Url("default","future","grow","name",a,5,end=1000,write=True),
 Url("web","search","keyword","search",a,5),
 Url("default","prep","ready","future",a,5),
 Url("default","default","","",a,5,code="17-2071.00")
@@ -254,16 +258,17 @@ Url("default","default","","",a,5,code="17-2071.00")
 # for i in test:
 #     print(i.url)
 # a=perf_counter()
-# # test[0].get_onet_careers()
-# # for i in range(1,6):
-#     # Url("default","prep","ready","future",a,i,end=1000,write=False).get_onet_careers()
-# # print(perf_counter()-a)
+# test[0].get_onet_careers()
+# for i in range(1,6):
+#     Url("default","prep","ready","future",a,i,end=1000,write=False).get_onet_careers()
+# # # print(perf_counter()-a)
 
 
 # dataLenght=len(os.listdir("data/"))
-# print(dataLenght)
+# # # print(dataLenght)
 # for i in range(dataLenght):
 #     test[0].decodeData(index=i)
+# test[0].saveSortData()
 # # test[0].decodeData(code="19-3091.00")
 # # print(test[0].sessionData())
 # for i in test[0].sortData():
@@ -274,3 +279,4 @@ Url("default","default","","",a,5,code="17-2071.00")
 
 # # print(os.listdir("data/"))
 # # print(Url("default","default","","",a,5,code="17-2071.00").url
+print(len(os.listdir("data/")))
