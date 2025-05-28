@@ -162,7 +162,7 @@ if(stateful_buttons(next,1,"next")):
 orgcol11,orgcol13=st.columns([75,75])
 with orgcol11:
     st.header("What is a Job Zone?")
-    st.write("A Job Zone is a group of occupations that are similar in how much education people need to do the work, how much related experience people need to do the work, and how much on-the-job training people need to do the work.")
+    st.write("A Job Zone is a group of occupations that are similar in the amount of education, experience, and on-the-job training people need to do the work.")
 with orgcol13:
     st.header("What is Salary?")
     st.write("The salary projected is based on the national median.")
