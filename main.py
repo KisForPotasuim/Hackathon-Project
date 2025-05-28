@@ -18,15 +18,6 @@ cont_limit=10
 totalpages=len(os.listdir("data/"))//cont_limit
 flag=False
 
-if 'reloaded' not in st.session_state:
-    st.session_state['reloaded']=False
-elif(counter==0):
-    counter+=1
-    for i in st.session_state.keys():
-        del st.session_state[i]
-    st.session_state['reloaded']=True
-
-
 if 'page' not in st.session_state:
     st.session_state['page'] = 1
 if 'next' not in st.session_state:
