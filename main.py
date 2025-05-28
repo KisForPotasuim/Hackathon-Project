@@ -7,27 +7,59 @@ import json
 from Url2 import Url
 import os
 
-# Just adding comments and fixing minor errors
-# https://services.onetcenter.org/ws/mnm/occupations?keyword=engineer&start=1&end=5
+
 openai.api_key = st.secrets["db_ai"]
 onet_username = st.secrets["db_username"]
 onet_password = st.secrets["db_password"]
 
-# username=‘career_chatbot1’
-# password=‘7335gtw’
-# ai=‘’’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’’’
+
+counter=0
+cont_limit=3
+totalpages=len(os.listdir("data/"))//cont_limit
+flag=False
+
+
+if 'reloaded' not in st.session_state:
+    st.session_state['reloaded']=False
+elif(counter==0):
+    counter+=1
+    for i in st.session_state.keys():
+        del st.session_state[i]
+    st.session_state['reloaded']=True
+
+if 'page' not in st.session_state:
+    st.session_state['page'] = 1
+if 'next' not in st.session_state:
+    st.session_state["next"]=False
+if 'prev' not in st.session_state:
+    st.session_state["prev"]=False
+if 'lastClicked' not in st.session_state:
+    st.session_state['lastClicked']="next"
 
 
 
 credentials = HTTPBasicAuth(onet_username, onet_password)
-# onet_url= "https://services.onetcenter.org/ws/mnm"
+# # credentials = f"{onet_username} : {onet_password}"
+# # credentials_2 = base64.b64encode(credentials.encode()).decode()
+# # headers = {"Authorization": f"Basic {credentials_2}"}
 
-# credentials = f"{onet_username} : {onet_password}"
-# credentials_2 = base64.b64encode(credentials.encode()).decode()
-# headers = {"Authorization": f"Basic {credentials_2}"}
+url1=Url("default","default","","","architect",5,write=False)
+url1.get_onet_careers()
+key={"Name":"Name:","Salary(National Median)":"Salary","Job Zone":"Edu"}
+
+for i in os.listdir("data/"):
+    url1.decodeData(title=i)
+
+with open("sort/sortKey.json","r") as file:
+    temp=json.load(file)
+    url1.compiledData=temp.get("BigData")
+    sortingKey={"Name":temp.get("Name:"),"Salary(National Median)":temp.get("Salary"),"Job Zone":temp.get("Edu")}
+file.close()
+careers=url1.sessionData()
 
 
 # streamlit
+
 st.title("Career Recommendation Chatbot")
 st.write("Answer the questions below to get recommendations on majors and careers!")
 question_1 = st.text_area("What are your hobbies?")
@@ -42,33 +74,96 @@ question_9 = st.text_area("Would you say you have a creative mind?")
 question_10 = st.text_area("What are your work values?")
 question_11 = st.text_area("What are your talents and strengths?")
 question_12 = st.multiselect("What industry would you like to work in?", ["Healthcare","Education", "Agriculture", "Construction", "Transportation", "Energy", "Entertainment", "Art", "Hospitality", "Software", "Hardware", "Finance", "Manufacturing", "Culinary", "Engineering", "Marketing", "Advising", "Research", "Sales", "Investing", "Law", "Business", "Aerospace", "Manual Labor"])
-question_13 = st.selectbox("How much education are you willing to go through?", ["Bachelor's degree", "Master's degree", "Community college", "No college"])
+question_13 = st.selectbox("How much education are you willing to go throRugh?", ["Bachelor's degree", "Master's degree", "Community college", "No college"])
 
 user_input = f""" {question_1 if question_1 else "Not provided"} {question_2} {question_3} {question_4 if question_4 else "Not provided"} {question_5 if question_5 else "Not provided"} {question_6} {question_7} {question_8 if question_8 else "Not provided"} {question_9 if question_9 else "Not provided"} {question_10 if question_10 else "Not provided"} {question_11 if question_11 else "Not provided"} {question_12 if question_12 else "Not provided"}"""
 
-url1=Url("default","default","","","architect",5,write=False)
-if st.button("Get Recommendations"):
-    if user_input:
-        # response = openai.chat.completions.create(
-        #     model="gpt-4o",
+col1_, col2_, col3_ = st.columns([30,40,15])
 
-        #     messages=[{"role": "system", "content": "Analyze user responses and suggest relevant careers."}, {"role": "user", "content": user_input}]
-        # )
-        # ai_response = response["choices"][0]["message"]["content"].lower()
-        # careers = get_onet_careers(ai_response.split()[0])
-        career=url1.get_onet_careers()
-        # for i in range(len(os.listdir("data/"))):
-        for i in range(len(os.listdir("data/"))):
-            url1.decodeData(index=i)
-        careers=url1.sessionData()
-        # data=url1.sessionData()
-        
-        st.subheader("Here's what we reccomend:")
+with col1_:
+    rec=st.button("Get Recommendations")
+    
+with col3_:
+    sort=st.selectbox("Sort Options",["Name","Salary(National Median)","Job Zone"])
 
-        for j in careers.keys():
-            st.write(f"### {j}")
-            st.write(careers[j]["Description:"])
-    else:
+orginizer=st.empty()
+display=orginizer.container(border=True,height=500)
 
-        st.write("")
 
+def stateful_buttons(button,incr,key):
+    if key not in st.session_state:
+        st.session_state[key]=False
+    if(button or (st.session_state[key] and st.session_state['lastClicked']==key)):
+        st.session_state['page']=st.session_state['page']+incr
+        st.session_state[key]=True
+    st.session_state['lastClicked']=key
+    
+    return button or st.session_state[key]
+
+def rec_botton_press(sortKey,careers=careers,button="rec",page=1):
+    start=(page-1)*cont_limit
+    end=page*cont_limit
+    
+    print(page)
+    print("start",start,end)
+    if(len(sortKey)-end<0):
+        end=len(sortKey)
+
+    if(len(sortKey)-start<0):
+        start=end-cont_limit
+    st.session_state['page']=page
+    print("modified",start,end)
+    # orginizer.empty()
+    with display:
+        # st.subheader("Here's what we reccomend:")
+        for j in range(start,end):
+            with st.container(border=True):
+                st.write(f"### {sortKey[j]}")
+                st.write(careers[sortKey[j]]["Description:"])
+                st.write(f"Salary: {careers[sortKey[j]]['Salary:']}")
+                st.write(f"Job Zone: {careers[sortKey[j]]['Prep:']}")
+
+print("\n")
+try:
+    str(sortType)
+except:
+    sortType="changeMe"
+
+with orginizer:
+    
+    if(sort!=sortType):
+        sortType=sort
+    #     if user_input:
+    #         print("\nsort")
+    #         rec_botton_press(sortingKey[sortType],page=st.session_state['page'])
+
+    if (rec and sort and sortType != "changeMe"):
+        if user_input:
+            pass
+            # response = openai.chat.completions.create(
+            #     model="gpt-4o",
+
+            #     messages=[{"role": "system", "content": "Analyze user responses and suggest relevant careers."}, {"role": "user", "content": user_input}]
+            # )
+            # ai_response = response["choices"][0]["message"]["content"].lower()
+            # careers = get_onet_careers(ai_response.split()[0])
+
+            #have ai return a code phrase(first two) or anything that conforms with decode data format
+            print("rec")
+            rec_botton_press(sortingKey[sortType])
+
+        else:
+            st.write("")
+
+# # print(st.session_state['page'])
+orgcol1,orgcol2,orgcol3=st.columns([30,110,15])
+with orgcol1:
+    previous=st.button("Previous")
+with orgcol3:
+    next=st.button("Next")
+
+if(stateful_buttons(previous,-1,"prev")):
+    rec_botton_press(sortingKey[sortType],page=st.session_state['page'])
+
+if(stateful_buttons(next,1,"next")):
+    rec_botton_press(sortingKey[sortType],page=st.session_state['page'])
