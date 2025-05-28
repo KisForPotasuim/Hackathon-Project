@@ -150,6 +150,9 @@ with orginizer:
 orgcol1,orgcol2,orgcol3=st.columns([30,110,15])
 with orgcol1:
     previous=st.button("Previous")
+with orgcol2:
+    st.write(st.session_state['page'])
+
 with orgcol3:
     next=st.button("Next")
 
