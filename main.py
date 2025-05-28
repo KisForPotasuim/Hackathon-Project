@@ -168,4 +168,4 @@ with orgcol11:
     st.write("A Job Zone is a group of occupations that are similar in the amount of education, experience, and on-the-job training people need to do the work. 5 is the highest, 1 is the lowest.")
 with orgcol13:
     st.header("What is Salary?")
-    st.write("The salary projected is based on the national median.")
+    st.write("The salary projected is based on the national income median.")
