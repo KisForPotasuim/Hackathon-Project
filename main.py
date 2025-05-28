@@ -160,9 +160,9 @@ if(stateful_buttons(next,1,"next")):
     rec_botton_press(sortingKey[sortType],page=st.session_state['page'])
 
 orgcol11,orgcol13=st.columns([75,75])
-with orgcol1:
+with orgcol11:
     st.write("What is a Job Zone?")
     st.write("A Job Zone is a group of occupations that are similar in how much education people need to do the work, how much related experience people need to do the work, and how much on-the-job training people need to do the work.")
-with orgcol3:
+with orgcol13:
     st.write("What is Salary Really?")
     st.write("For all intents and purposes, the salary projected is based on the national median.")
