@@ -147,7 +147,7 @@ with orginizer:
             st.write("")
 
 # # print(st.session_state['page'])
-orgcol1,orgcol2,orgcol3=st.columns([70,75,15])
+orgcol1,orgcol2,orgcol3=st.columns([70,65,15])
 with orgcol1:
     previous=st.button("Previous")
 with orgcol2:
