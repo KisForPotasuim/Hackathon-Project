@@ -169,4 +169,6 @@ with orgcol11:
 with orgcol13:
     st.header("What is Salary?")
     st.write("The salary projected is based on the national income median.")
+
+st.write("\n\n\n")
 st.write("""This site incorporates information from O*NET Web Services by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA). O*NET® is a trademark of USDOL/ETA.""")
